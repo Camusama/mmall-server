@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/CrossFilter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/SpringContext.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/CacheFactory.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/DataCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/DefaultCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/DictCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/RegionCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/RegionMapCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/SysCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/SysMapCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/UserCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/common/method/cache/WFCache.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/pojo/Permission.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/pojo/PermissionType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/mmall/pojo/Role.java" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

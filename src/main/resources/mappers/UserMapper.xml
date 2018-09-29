@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmall.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.mmall.pojo.User" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="domain" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="labor_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="avatar" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="sex" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="age" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="phone" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="job_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="organ_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="leader" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="note" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <resultMap type="com.mmall.pojo.Role" id="rInfo">
+    <result column="RID" property="id" />
+    <result column="RNAME" property="name" />
+    <result column="ISSYS" property="issys" />
+
+    <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+    <collection property="permissions"
+                ofType="com.mmall.pojo.Permission">
+      <result column="code" property="code" />
+      <result column="PNAME" property="name" />
+      <result column="type" property="type" />
+      <result column="parentCode" property="parentCode" />
+      <result column="url" property="url" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, domain, labor_id, name, password, avatar, sex, age, phone, job_id, organ_id, 
+    leader, note, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmall.pojo.User" >
+    insert into user (id, domain, labor_id, 
+      name, password, avatar, sex, 
+      age, phone, job_id, 
+      organ_id, leader, note, 
+      createTime, updateTime)
+    values (#{id,jdbcType=INTEGER}, #{domain,jdbcType=CHAR}, #{laborId,jdbcType=CHAR},
+      #{name,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{avatar,jdbcType=CHAR}, #{sex,jdbcType=BIT}, 
+      #{age,jdbcType=INTEGER}, #{phone,jdbcType=INTEGER}, #{jobId,jdbcType=INTEGER}, 
+      #{organId,jdbcType=INTEGER}, #{leader,jdbcType=CHAR}, #{note,jdbcType=VARCHAR}, 
+      now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmall.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="laborId != null" >
+        labor_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=CHAR},
+      </if>
+      <if test="laborId != null" >
+        #{laborId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=INTEGER},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=CHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        now(),
+      </if>
+      <if test="updatetime != null" >
+        now(),
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.User" >
+    update user
+    <set >
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=CHAR},
+      </if>
+      <if test="laborId != null" >
+        labor_id = #{laborId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="jobId != null" >
+        job_id = #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=INTEGER},
+      </if>
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=CHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = now(),
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.User" >
+    update user
+    set domain = #{domain,jdbcType=CHAR},
+      labor_id = #{laborId,jdbcType=INTEGER},
+      name = #{name,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      avatar = #{avatar,jdbcType=CHAR},
+      sex = #{sex,jdbcType=BIT},
+      age = #{age,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=INTEGER},
+      job_id = #{jobId,jdbcType=INTEGER},
+      organ_id = #{organId,jdbcType=INTEGER},
+      leader = #{leader,jdbcType=CHAR},
+      note = #{note,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="checkUsername" resultType="int" parameterType="string" >
+    select count(1) from user
+    where labor_id = #{labor_id}
+  </select>
+
+  <select id="checkPassword" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    from user
+    where password = #{password}
+    and id = #{Id}
+  </select>
+
+  <update id="updatePasswordByUsername" parameterType="map">
+    update user
+    SET password = #{passwordNew},update_time = now()
+    where labor_id = #{labor_id}
+  </update>
+
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from user
+    where labor_id = #{labor_id}
+    and password = #{password}
+  </select>
+
+  <select id="getRoleList" parameterType="String" resultMap="rInfo">
+    select r.id RID,r.name RNAME ,r.Issys ISSYS
+    ,p.code,p.name
+    PNAME,p.type,p.parentcode,p.url
+    from SYS_ROLE r
+    join SYS_USERROLES ur on
+    ur.roleid=r.id
+    full outer join SYS_ROLEPERMISSIONS pm on pm.roleid=r.id
+    full outer join SYS_PERMISSION p on p.code=pm.permissioncode
+    where
+    ur.userid=#{id}
+  </select>
+</mapper>
